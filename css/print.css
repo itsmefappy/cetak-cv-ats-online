@@ -1,0 +1,90 @@
+/* Print stylesheet for ATS-Friendly A4 output */
+@page {
+  size: A4 portrait;
+  margin: 15mm;
+}
+
+@media print {
+  /* Sembunyikan elemen antarmuka */
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 10pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #editor-panel,
+  #top-nav,
+  #preview-controls,
+  .mobile-tabs,
+  #ats-tips-modal,
+  .no-print {
+    display: none !important;
+  }
+
+  #preview-panel {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  .preview-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    max-height: none !important;
+    background: transparent !important;
+  }
+
+  .preview-scaler {
+    transform: none !important;
+    margin: 0 !important;
+    width: auto !important;
+  }
+
+  #resume-page {
+    width: 100% !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    transform: none !important;
+  }
+
+  /* ATS Page Break Safeguard: cegah elemen terpotong aneh */
+  .resume-section {
+    page-break-inside: auto;
+  }
+
+  .rp-list {
+    list-style-type: disc !important;
+    padding-left: 18px !important;
+  }
+
+  .resume-entry {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}

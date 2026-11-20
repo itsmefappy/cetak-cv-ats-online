@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATSResume Builder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/print.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header id="top-nav" class="bg-white border-b sticky top-0 z-20">
+    <div class="max-w-screen-2xl mx-auto px-4 py-3 flex justify-between items-center gap-3">
+      <div>
+        <h1 class="text-xl font-bold text-gray-900">ATSResume Builder</h1>
+        <p class="text-xs text-gray-500">CV teks ATS-friendly &amp; siap cetak A4</p>
+      </div>
+      <div class="flex items-center gap-3 flex-wrap justify-end">
+        <span id="save-status" class="save-pill" role="status" aria-live="polite">Tersimpan</span>
+        <button type="button" class="btn btn-light" id="import-btn" aria-label="Impor data CV dari berkas JSON">Impor JSON</button>
+        <input id="import-file" type="file" accept="application/json" hidden>
+        <button type="button" class="btn btn-light" id="export-btn" aria-label="Ekspor data CV ke berkas JSON">Ekspor JSON</button>
+        <button type="button" class="btn btn-primary" id="print-btn" title="Cetak CV (Hilangkan centang Headers & Footers pada dialog print browser)" aria-label="Cetak atau unduh CV format PDF">Unduh PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-tabs" role="tablist">
+    <button type="button" class="active" data-tab="editor-panel" role="tab" aria-selected="true">Edit</button>
+    <button type="button" data-tab="preview-panel" role="tab" aria-selected="false">Preview</button>
+  </div>
+
+  <main class="app-shell" data-view="editor">
+    <section id="editor-panel" class="editor-panel" aria-label="Editor Formulir CV">
+      <div class="editor-head">
+        <div>
+          <h2 class="text-lg font-bold">Editor CV</h2>
+          <p class="text-xs text-gray-500">Data tersimpan otomatis di browser.</p>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="btn btn-light" id="dummy-btn">Data Contoh</button>
+          <button type="button" class="btn btn-danger" id="reset-btn">Reset</button>
+        </div>
+      </div>
+
+      <div id="ats-score" class="score-box" role="region" aria-live="polite" aria-label="ATS Score dan Rekomendasi"></div>
+      <form id="form-root" onsubmit="return false;"></form>
+    </section>
+
+    <section id="preview-panel" class="preview-panel" aria-label="Pratinjau CV">
+      <div id="preview-controls" class="preview-controls">
+        <label for="template-select">Templat
+          <select id="template-select">
+            <option value="classic">Classic Single-Column</option>
+            <option value="modern">Modern Clean Header</option>
+          </select>
+        </label>
+        <label for="font-family-select">Font
+          <select id="font-family-select">
+            <option value="arial">Arial</option>
+            <option value="calibri">Calibri</option>
+            <option value="times">Times New Roman</option>
+            <option value="roboto">Roboto</option>
+          </select>
+        </label>
+        <label for="font-size-select">Ukuran
+          <select id="font-size-select">
+            <option value="small">Kecil (9.5pt)</option>
+            <option value="medium">Sedang (10.5pt)</option>
+            <option value="large">Besar (11.5pt)</option>
+          </select>
+        </label>
+        <span class="print-hint" title="Pengaturan ini ada di dialog cetak browser">Tips: matikan “Headers and footers” saat cetak</span>
+      </div>
+
+      <div class="preview-wrapper">
+        <div class="preview-scaler" id="preview-scaler">
+          <article id="resume-page" class="resume-page" tabindex="0" aria-label="Dokumen Resume A4"></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/dummy-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
